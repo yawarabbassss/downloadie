@@ -21,3 +21,8 @@ def setup_logging(debug: bool = False) -> None:
     logging.getLogger("uvicorn.access").setLevel(logging.WARNING)
     logging.getLogger("httpcore").setLevel(logging.WARNING)
     logging.getLogger("httpx").setLevel(logging.WARNING)
+
+
+def get_logger(name: str) -> logging.Logger:
+    """Return a named logger."""
+    return logging.getLogger(name)

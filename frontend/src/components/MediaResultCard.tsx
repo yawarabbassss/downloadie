@@ -18,7 +18,8 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { MediaResolutionResult, MediaFormatOption } from "@/lib/types";
-import { createDownload, pollJobStatus } from "@/lib/api";
+import { createDownload, pollJobStatus, downloadInstagramCarousel, pollCarouselJobStatus } from "@/lib/api";
+import Link from "next/link";
 import { formatBytes, formatSeconds } from "@/lib/utils";
 
 interface MediaResultCardProps {
@@ -197,6 +198,41 @@ export function MediaResultCard({ result, onReset }: MediaResultCardProps) {
                 </div>
               </div>
             </div>
+
+            {/* Carousel Multi-Slide & ZIP Options */}
+            {result.carousel_items && result.carousel_items.length > 0 && (
+              <div className="space-y-3 p-4 rounded-xl bg-indigo-50/60 border border-indigo-100">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Layers className="h-4 w-4 text-indigo-600" />
+                    <span className="text-xs font-bold text-indigo-950">
+                      Instagram Carousel ({result.carousel_items.length} Slides Detected)
+                    </span>
+                  </div>
+                  <Link
+                    href="/instagram-carousel-downloader"
+                    className="text-xs font-semibold text-indigo-600 hover:text-indigo-800"
+                  >
+                    Open Carousel Downloader →
+                  </Link>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {result.carousel_items.map((item, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => handleStartDownload(idx)}
+                      className="p-2.5 rounded-lg border border-indigo-200/80 bg-white hover:bg-indigo-50 text-xs text-left transition-colors flex flex-col justify-between"
+                    >
+                      <span className="font-semibold text-slate-800">Slide {idx + 1}</span>
+                      <span className="text-[10px] text-slate-500 uppercase mt-1">
+                        {item.media_type === "video" ? "MP4 Video" : "High-Res Image"}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Format Selection (if multiple options) */}
             {result.formats.length > 1 && (

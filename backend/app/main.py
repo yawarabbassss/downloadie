@@ -7,6 +7,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.api.routes_downloads import router as downloads_router
 from app.api.routes_health import router as health_router
+from app.api.routes_instagram import router as instagram_router
 from app.api.routes_providers import router as providers_router
 from app.api.routes_resolve import router as resolve_router
 from app.core.config import settings
@@ -98,6 +99,7 @@ app.include_router(health_router, prefix=settings.api_prefix)
 app.include_router(providers_router, prefix=settings.api_prefix)
 app.include_router(resolve_router, prefix=settings.api_prefix)
 app.include_router(downloads_router, prefix=settings.api_prefix)
+app.include_router(instagram_router, prefix=settings.api_prefix)
 
 
 @app.get("/")

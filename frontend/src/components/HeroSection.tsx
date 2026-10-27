@@ -39,6 +39,23 @@ export function HeroSection({ onCheckUrl, isLoading, result, onReset }: HeroSect
           Paste a supported media link to discover available download options for content you own or are authorized to save.
         </p>
 
+        {/* Feature Quick Links */}
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="/instagram-analyzer"
+            className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 border border-indigo-200/80 px-3 py-1 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 transition-colors shadow-2xs"
+          >
+            <span>📊 Instagram Profile Analyzer</span>
+            <span className="rounded-full bg-indigo-600 text-white px-1.5 py-0.2 text-[9px]">New</span>
+          </a>
+          <a
+            href="/instagram-carousel-downloader"
+            className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-200 transition-colors shadow-2xs"
+          >
+            <span>📦 One-Click Carousel ZIP</span>
+          </a>
+        </div>
+
         {/* Input Form Area */}
         <div className="mt-10">
           <UrlInputForm onCheckUrl={onCheckUrl} isLoading={isLoading} />

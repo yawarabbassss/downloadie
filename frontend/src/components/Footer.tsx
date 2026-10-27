@@ -25,32 +25,32 @@ export function Footer() {
           {/* Supported Platforms */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-900 mb-3">
-              Platforms
+              Features & Tools
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="/instagram-analyzer" className="hover:text-brand-600 transition-colors font-medium text-slate-800">
+                  Instagram Analyzer
+                </Link>
+              </li>
+              <li>
+                <Link href="/instagram-carousel-downloader" className="hover:text-brand-600 transition-colors">
+                  One-Click Carousel ZIP
+                </Link>
+              </li>
+              <li>
                 <Link href="/platforms/instagram" className="hover:text-brand-600 transition-colors">
-                  Instagram
+                  Instagram Downloader
                 </Link>
               </li>
               <li>
                 <Link href="/platforms/youtube" className="hover:text-brand-600 transition-colors">
-                  YouTube
+                  YouTube Downloader
                 </Link>
               </li>
               <li>
                 <Link href="/platforms/tiktok" className="hover:text-brand-600 transition-colors">
-                  TikTok
-                </Link>
-              </li>
-              <li>
-                <Link href="/platforms/facebook" className="hover:text-brand-600 transition-colors">
-                  Facebook
-                </Link>
-              </li>
-              <li>
-                <Link href="/platforms/direct" className="hover:text-brand-600 transition-colors">
-                  Direct Media
+                  TikTok Downloader
                 </Link>
               </li>
             </ul>

@@ -17,21 +17,33 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
           <Link href="/" className="hover:text-brand-600 transition-colors">
             Home
           </Link>
+          <Link
+            href="/instagram-analyzer"
+            className="flex items-center gap-1.5 hover:text-brand-600 transition-colors font-medium text-slate-800"
+          >
+            <span>Instagram Analyzer</span>
+            <span className="rounded-full bg-indigo-50 border border-indigo-200/60 px-1.5 py-0.5 text-[10px] font-bold text-indigo-700">
+              New
+            </span>
+          </Link>
+          <Link
+            href="/instagram-carousel-downloader"
+            className="hover:text-brand-600 transition-colors"
+          >
+            Carousel ZIP
+          </Link>
           <Link href="/platforms" className="hover:text-brand-600 transition-colors">
-            Supported Platforms
+            Platforms
           </Link>
           <Link href="/how-it-works" className="hover:text-brand-600 transition-colors">
             How It Works
           </Link>
           <Link href="/faq" className="hover:text-brand-600 transition-colors">
             FAQ
-          </Link>
-          <Link href="/privacy" className="hover:text-brand-600 transition-colors">
-            Privacy
           </Link>
         </nav>
 
@@ -75,6 +87,20 @@ export function Header() {
             className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50"
           >
             Home
+          </Link>
+          <Link
+            href="/instagram-analyzer"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-indigo-700 font-semibold bg-indigo-50/60"
+          >
+            📊 Instagram Profile Analyzer
+          </Link>
+          <Link
+            href="/instagram-carousel-downloader"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50"
+          >
+            📦 One-Click Carousel Downloader
           </Link>
           <Link
             href="/platforms"

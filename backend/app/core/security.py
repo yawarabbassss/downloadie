@@ -27,6 +27,9 @@ ALLOWED_MIME_TYPES = {
     "image/webp": ".webp",
     "image/gif": ".gif",
     "image/svg+xml": ".svg",
+    # Archives (Carousel ZIP downloads)
+    "application/zip": ".zip",
+    "application/x-zip-compressed": ".zip",
 }
 
 # Inverted mapping: extension to mime
@@ -139,3 +142,39 @@ def verify_download_token(job_id: str, token: str, secret_key: str) -> bool:
         return hmac.compare_digest(received_sig, expected_sig)
     except Exception:
         return False
+
+
+def encrypt_token(raw_token: str, secret_key: str) -> str:
+    """
+    Encrypt sensitive access token at rest using key derivation and XOR stream cipher with random salt.
+    Result is hex encoded safe string.
+    """
+    import base64
+    if not raw_token:
+        return ""
+    salt = os.urandom(16)
+    key = hashlib.sha256(secret_key.encode("utf-8") + salt).digest()
+    data = raw_token.encode("utf-8")
+    encrypted = bytes([b ^ key[i % len(key)] for i, b in enumerate(data)])
+    combined = salt + encrypted
+    return base64.urlsafe_b64encode(combined).decode("utf-8")
+
+
+def decrypt_token(cipher_text: str, secret_key: str) -> Optional[str]:
+    """
+    Decrypt access token encrypted with encrypt_token.
+    """
+    import base64
+    if not cipher_text:
+        return None
+    try:
+        combined = base64.urlsafe_b64decode(cipher_text.encode("utf-8"))
+        if len(combined) < 17:
+            return None
+        salt = combined[:16]
+        encrypted = combined[16:]
+        key = hashlib.sha256(secret_key.encode("utf-8") + salt).digest()
+        data = bytes([b ^ key[i % len(key)] for i, b in enumerate(encrypted)])
+        return data.decode("utf-8")
+    except Exception:
+        return None

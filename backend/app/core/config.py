@@ -37,11 +37,14 @@ class Settings(BaseSettings):
     job_expiration_minutes: int = 60
     max_storage_quota_mb: int = 2048  # 2 GB total ephemeral cache limit
 
-    # Database
-    database_url: str = "sqlite+aiosqlite:///./data/downloadie.db"
+    # Database (uses absolute path inside backend/data)
+    database_url: str = f"sqlite+aiosqlite:///{os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'data', 'downloadie.db').replace('\\', '/')}"
 
     # Optional Provider Credentials (official APIs)
     instagram_access_token: Optional[str] = None
+    instagram_app_id: Optional[str] = None
+    instagram_app_secret: Optional[str] = None
+    instagram_redirect_uri: str = "http://localhost:3000/instagram-analyzer?tab=connected"
     youtube_api_key: Optional[str] = None
     tiktok_client_key: Optional[str] = None
     tiktok_client_secret: Optional[str] = None
