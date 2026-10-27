@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+backend/venv/
+venv/
+.venv/
+
+# Next.js build output
+.next/
+out/
+build/
+dist/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases & downloads storage
+*.db
+*.sqlite
+*.sqlite3
+backend/data/downloads/*
+!backend/data/downloads/.gitkeep
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Antigravity / Agent scratch
+scratch/
